@@ -10,12 +10,12 @@ load_dotenv()
 st.set_page_config(page_title="AI Resume critiquer",page_icon="page",layout="centered")
 
 st.title("AI Resume critiquer")
-st.markdown("Upload resume and get AI-powered feedback tailored to your needs!")
+st.markdown("Let AI analyze your resume and provide feedback specific to your goals!")
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 uploaded_file = st.file_uploader("Upload your resume (PDF of TXT)", type=["pdf", "txt"])
-job_role = st.text_input("Enter the job role you're targetting (optional)")
+job_role = st.text_input("Enter the job title you're applying for (optional)")
 
 analyze = st.button("Analyze Resume")
 
@@ -41,9 +41,9 @@ if analyze and uploaded_file:
         
         prompt = f"""Please analyze this resume and provide constructive feedback. 
         Focus on the following aspects:
-        1. Content clarity and impact
-        2. Skills presentation
-        3. Experience descriptions
+        1. Content clarity and impact(Assesses how clearly and effectively your ideas are communicated)
+        2. Skills presentation(Evaluates how well your skills are highlighted and aligned with the job role)
+        3. Experience descriptions(Reviews the quality and relevance of your work experience summaries)
         4. Specific improvements for {job_role if job_role else 'general job applications'}
         
         Resume content:
